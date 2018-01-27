@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Header 1`] = `
+<header
+  className="sc-bdVaJa jhfvel"
+>
+  <div
+    className="sc-bwzfXH hWHZbd"
+  >
+    <div
+      className="sc-htpNat cgSBXb"
+    >
+      <div>
+        Mercury
+      </div>
+      <div
+        className="sc-bxivhb fzMRlP"
+      >
+        Home
+      </div>
+    </div>
+  </div>
+</header>
+`;

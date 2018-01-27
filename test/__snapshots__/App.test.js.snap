@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<div>
+  <header
+    className="sc-bdVaJa jhfvel"
+  >
+    <div
+      className="sc-bwzfXH hWHZbd"
+    >
+      <div
+        className="sc-htpNat cgSBXb"
+      >
+        <div>
+          Mercury
+        </div>
+        <div
+          className="sc-bxivhb fzMRlP"
+        >
+          Home
+        </div>
+      </div>
+    </div>
+  </header>
+  <merchants />
+</div>
+`;

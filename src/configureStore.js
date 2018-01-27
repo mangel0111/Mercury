@@ -1,24 +1,36 @@
-import { createStore, compose } from 'redux';
-import reducers from './reducers';
+import { createStore, compose, applyMiddleware } from 'redux';
+import { createLogger } from 'redux-logger';
+import thunk from 'redux-thunk';
+import merchant from './reducers';
+
+
+//This file don't need Eslint
+/* eslint-disable */
+
 
 const configureStore = (preloadedState) => {
-  const enhancers = [];
+	const enhancers = [];
+	const middleware = [ thunk ];
+	if (process.env.NODE_ENV !== 'production') {
+		middleware.push(createLogger());
+	}
 
-  if (process.env.NODE_ENV === 'development') {
-    const devToolsExtension = window.devToolsExtension
+	if (process.env.NODE_ENV === 'development') {
+		const devToolsExtension = window.devToolsExtension;
 
-    if (typeof devToolsExtension === 'function') {
-      enhancers.push(devToolsExtension());
-    }
-  }
+		if (typeof devToolsExtension === 'function') {
+			enhancers.push(devToolsExtension());
+		}
+	}
 
-  return createStore(
-    reducers,
-    preloadedState,
-    compose(
-      ...enhancers
-    )
-  );
+	return createStore(
+		merchant,
+		applyMiddleware(...middleware),
+		preloadedState,
+		compose(
+			...enhancers
+		)
+	);
 };
 
 export default configureStore;
