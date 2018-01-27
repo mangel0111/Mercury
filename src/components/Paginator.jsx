@@ -26,8 +26,8 @@ const Link = styled.a`
     padding: .5rem .75rem;
     margin-left: -1px;
     line-height: 1.25;
-    color: #007bff;
-    background-color: #fff;
+    color: ${props => props.selected ? '#fff': '#007bff'};
+    background-color: ${props => props.selected ? '#007bff': '#fff'};;
     border: 1px solid #dee2e6;
     margin-left: 0;
 `;
@@ -47,25 +47,27 @@ export class Paginator extends Component {
     
 	getMidlePages() {
 		const { pageSize, size } = this.props;
-		let maxPages = Math.floor(size / pageSize);
-		if(maxPages <= 1){
+		let maxPages = Math.ceil(size / pageSize);
+		if(maxPages <= 2){
 			return [];
 		}
-		const pages = Array.from(new Array(maxPages),(val,index)=>index);
+		const pages = Array.from(new Array(--maxPages),(val,index)=>index);
 		return pages.slice(1);
 	}
 
 	render(){
-		const { pageSize, size, onChange } = this.props;
+		const { pageSize, size, onChange, page } = this.props;
     
 		if(!size || size <= pageSize) {
 			return null;
 		}
+		const currentPage = Math.ceil(size / pageSize);
 		return (
 			<Navigator>
 				<PageNavigator>
 					<li>
 						<FirtsLink
+							selected={page===0}
 							onClick={()=> onChange({page: 0})}
 						>
                             Previous
@@ -77,6 +79,7 @@ export class Paginator extends Component {
 								key={pageItem}
 							>
 								<Link
+									selected={pageItem === page}
 									onClick={()=> onChange({page: --pageItem})}s
 								>
 									{++pageItem}
@@ -86,7 +89,8 @@ export class Paginator extends Component {
 					)}
 					<li>
 						<LastLink
-							onClick={()=> onChange({page: Math.floor(size / pageSize)})}
+							selected={currentPage - 1 === page}
+							onClick={()=> onChange({page: currentPage - 1})}
 						>
                             Last
 						</LastLink>

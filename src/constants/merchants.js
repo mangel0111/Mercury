@@ -30,7 +30,12 @@ export const merchants= {
 		email: 'mark.zuckerberg@facebook.com',
 		phone: '1234567890',
 		hasPremiun: false,
-		bids: [],
+		bids: [{
+			id: 1,
+			carTitle: 'React',
+			amount: 1234.2,
+			created: '21-01-2018'
+		}],
 		avatarUrl: 'images/mark.jpg'
 	},
 	{
@@ -49,7 +54,12 @@ export const merchants= {
 		email: 'armando.reveron@mercury.com',
 		phone: '1234567890',
 		hasPremiun: true,
-		bids: [],
+		bids: [{
+			id: 1,
+			carTitle: 'Instagram',
+			amount: 124.2,
+			created: '21-01-2018'
+		}],
 		avatarUrl: 'images/armando.jpg'
 	},{
 		id: 6,
@@ -67,7 +77,27 @@ export const merchants= {
 		email: 'quentin.tarantino@mercury.com',
 		phone: '1234567890',
 		hasPremiun: true,
-		bids: [],
+		bids: [{
+			id: 1,
+			carTitle: 'DT',
+			amount: 124.2,
+			created: '21-01-2018'
+		},{
+			id: 1,
+			carTitle: 'FACEBOOK',
+			amount: 124.2,
+			created: '21-01-2018'
+		},{
+			id: 1,
+			carTitle: 'DT',
+			amount: 199.2,
+			created: '21-01-2018'
+		},{
+			id: 1,
+			carTitle: 'Twitter',
+			amount: 888.2,
+			created: '21-01-2018'
+		}],
 		avatarUrl: 'images/quentin.jpg'
 	},
 	{
@@ -77,8 +107,13 @@ export const merchants= {
 		email: 'janis.joplin@mercury.com',
 		phone: '1234567890',
 		hasPremiun: true,
-		bids: [],
-		avatarUrl: 'images/janis.jpg'
+		bids: [{
+			id: 1,
+			carTitle: 'DT',
+			amount: 124874.2,
+			created: '21-01-2018'
+		}],
+		avatarUrl: 'images/janis.jpeg'
 	},
 	{
 		id: 9,
@@ -87,7 +122,12 @@ export const merchants= {
 		email: 'John.Lennon@mercury.com',
 		phone: '1234567890',
 		hasPremiun: true,
-		bids: [],
+		bids: [{
+			id: 1,
+			carTitle: 'DT',
+			amount: 124.2,
+			created: '21-01-2018'
+		}],
 		avatarUrl: 'images/lennon.jpg'
 	},
 	{
@@ -97,7 +137,12 @@ export const merchants= {
 		email: 'Brigette.Bardot@mercury.com',
 		phone: '1234567890',
 		hasPremiun: true,
-		bids: [],
+		bids: [{
+			id: 1,
+			carTitle: 'BT',
+			amount: 1024.2,
+			created: '21-01-2018'
+		}],
 		avatarUrl: 'images/bardot.jpg'
 	},
 	{
@@ -107,7 +152,17 @@ export const merchants= {
 		email: 'antoninartauds@mercury.com',
 		phone: '1234567890',
 		hasPremiun: false,
-		bids: [],
+		bids: [{
+			id: 1,
+			carTitle: 'TELECOM',
+			amount: 994.2,
+			created: '21-01-2018'
+		}, {
+			id: 1,
+			carTitle: 'Ferrari',
+			amount: 48124.2,
+			created: '21-01-2018'
+		}],
 		avatarUrl: 'images/antoninartaud.jpg'
 	}
 	]

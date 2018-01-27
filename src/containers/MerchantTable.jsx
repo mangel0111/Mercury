@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Button from '../components/Button';
 import FaStar from 'react-icons/lib/fa/star';
 import FaSquareO from 'react-icons/lib/fa/square-o';
 import Paginator from '../components/Paginator';
-import { getAllMerchants } from '../actions/index';
+import ManageMerchant from './ManageMerchant';
+import { getAllMerchants, removeMerchant, editMerchant } from '../actions/index';
+
 
 const Container = styled.div`
     margin-right: 0;
@@ -37,6 +40,14 @@ const Imagen = styled.img`
     width: 80px;
 `;
 
+const Toolbar = styled.div`
+    display: inline;
+
+    button {
+        margin-right: 10px;
+    }
+`;
+
 const Cell = styled.div`
     margin-top: 10px;
 `;
@@ -49,43 +60,78 @@ const COLUMNS = [{
 }, {
 	name: 'First',
 	type: 'TEXT',
+	sortable: true,
 	key: 'firstname',
 	cell: ({firstname}) => firstname
 }, {
 	name: 'Last',
 	key: 'lastname',
+	sortable: true,
 	type: 'TEXT',
 	cell: ({lastname}) => lastname
 }, {
 	name: 'Email',
 	key: 'email',
+	sortable: true,
 	type: 'TEXT',
 	cell: ({email}) => email
 }, {
 	name:'Phone',
 	key: 'phone',
+	sortable: true,
 	type: 'TEXT',
 	cell: ({phone}) => phone
 }, {
 	name: 'Premiun',
 	key: 'hasPremiun',
+	sortable: true,
 	type: 'ICON',
 	cell: ({hasPremiun}) => hasPremiun
 }, {
 	name: '# Bids',
 	key: 'bids',
+	sortable: true,
 	type: 'TEXT',
 	cell: ({bids}) =>{
 		return bids.length;
+	}
+}, {
+	name: '',
+	key: 'actions',
+	type: 'ACTION',
+	cell: () =>{
+		return '';
 	}
 }];
 
 class MerchantTable extends Component {
 
+	constructor (props){
+		super(props);
+		this.state = {
+			editMerchant: false,
+			merchant: undefined
+		};
+	}
+
 	getHeader(){
 		return(
 			<thead>
-				{COLUMNS.map(({name, key}) => <th key={key}>{name}</th>)}
+				{COLUMNS.map(({name, key, sortable}) => 
+					<th key={key}
+						onClick={
+							() => {
+								const { dispatch } = this.props;
+								if(sortable) {
+									dispatch(getAllMerchants({
+										orderBy: key
+									}));
+								}
+							}
+						}
+					>
+						{name}
+					</th>)}
 			</thead>
 		);
 	}
@@ -94,6 +140,24 @@ class MerchantTable extends Component {
 		const { dispatch } = this.props;
 		dispatch(getAllMerchants(options));
 	}
+
+	createEditModal({ merchant }){
+		if(!merchant){
+			return null;
+		}
+		return (
+			<ManageMerchant
+				action={editMerchant}
+				saveAction="Edit"
+				merchant={merchant}
+				contentLabel="Edit Merchant"
+				description="Here you can edit this merchant"
+				onRequestClose={() => this.setState({
+					editMerchant: false
+				})}
+			/>
+		);
+	}
     
 	getCell({type, key, merchant, cell}){
 		switch(type){
@@ -101,6 +165,31 @@ class MerchantTable extends Component {
 			return (<Imagen src={merchant[key]}/>);
 		case 'TEXT':
 			return <Cell>{cell(merchant)}</Cell>;
+		case 'ACTION':
+			return (
+				<Cell>
+					<Toolbar>
+						<Button
+							label={'Edit'}
+							type="PRIMARY"
+							onClick={()=> {
+								this.setState({ 
+									editMerchant: true,
+									merchant
+								});
+							}}
+						/>
+						<Button
+							label={'Delete'}
+							type="DANGER"
+							onClick={()=> {
+								const { dispatch }= this.props;
+								dispatch(removeMerchant({ merchant }));
+							}}
+						/>
+					</Toolbar>
+				</Cell>
+			) ;
 		case 'ICON':
 			if(merchant[key]){
 				return (<Cell><FaStar/></Cell>);
@@ -137,6 +226,7 @@ class MerchantTable extends Component {
     
 	render(){
 		const { merchants } = this.props;
+		const { editMerchant, merchant } = this.state;
 		return (
 			<Container>
 				<Table>
@@ -152,6 +242,7 @@ class MerchantTable extends Component {
 						}
 					)}
 				/>
+				{editMerchant && this.createEditModal({ merchant })}
 			</Container>
 		);
 	}

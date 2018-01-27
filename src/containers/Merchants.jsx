@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Button from '../components/Button';
 import MerchandTable from './MerchantTable';
-import { getAllMerchants } from '../actions/index';
+import ManageMerchant from './ManageMerchant';
+import { getAllMerchants, addMerchant } from '../actions/index';
 
 const Panel = styled.div`
     margin-top: 60px;
@@ -25,30 +27,12 @@ const LeftAction = styled.div`
     margin-top: 45px;
 `;
 
-const Button = styled.button`
-    display: inline-block;
-    font-weight: 400;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    border: 1px solid transparent;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: .25rem;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;    
-    color: #fff;
-    background-color: #28a745;
-    border-color: #28a745;
-`;
-
 class Merchants extends Component {
 	constructor(props){
 		super(props);
+		this.state = {
+			createMerchant: false
+		};
 	}
     
 	componentWillMount() {
@@ -59,8 +43,26 @@ class Merchants extends Component {
 		const { dispatch } = this.props;
 		dispatch(getAllMerchants({ page }));
 	}
+
+	createMerchantModal(){
+		return (
+			<ManageMerchant
+				merchant={{
+					bids: []
+				}}
+				action={addMerchant}
+				saveAction="Create"
+				contentLabel="Create Merchant"
+				description="Here you can create a ner merchant"
+				onRequestClose={() => this.setState({
+					createMerchant: false
+				})}
+			/>
+		);
+	}
     
 	render(){
+		const { createMerchant } = this.state;
 		return(
 			<Panel>
 				<Dashboard>
@@ -71,7 +73,11 @@ class Merchants extends Component {
 							</h2>
 						</div>
 						<LeftAction>
-							<Button> Create </Button>
+							<Button
+								label="Create"
+								type="PRIMARY"
+								onClick={()=> this.setState({ createMerchant: true })}
+							/>
 						</LeftAction>
 					</Toolbar>
 					<p>
@@ -80,6 +86,9 @@ class Merchants extends Component {
 					</p>
 					<MerchandTable/>
 				</Dashboard>
+				{
+					createMerchant && this.createMerchantModal()
+				}
 			</Panel>
 		);
 	}
