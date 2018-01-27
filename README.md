@@ -8,7 +8,9 @@ This site will allow you manage your staff of merchants
 `yarn` or `npm install`
 `yarn start` or `npm start`
 
-# Used:
-- React
-- Redux
-- Styled-components
+# Build with:
+* [React](https://reactjs.org/) - Framework/Library
+* [Redux](https://redux.js.org/) - Actions
+* [Styled-components](https://www.styled-components.com/) - Creation of styled components
+
+
