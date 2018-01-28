@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Renders Header 1`] = `
+exports[`Renders Header render without crash 1`] = `
 <header
   className="sc-bdVaJa jhfvel"
 >

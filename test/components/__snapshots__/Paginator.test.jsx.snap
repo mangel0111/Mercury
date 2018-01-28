@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Paginator render without crash 1`] = `
+<nav
+  className="sc-bdVaJa iSsrAY"
+  data-container="paginator"
+>
+  <ul
+    className="sc-bwzfXH jZnbsg"
+  >
+    <li>
+      <a
+        className="sc-bxivhb hJoAke sc-htpNat hJqWET"
+        data-action="paginator:first:link"
+        onClick={[Function]}
+        selected={true}
+      >
+        Previous
+      </a>
+    </li>
+    <li>
+      <a
+        className="sc-ifAKCX hJgFXe sc-htpNat ioIdIC"
+        data-action="paginator:last:link"
+        onClick={[Function]}
+        selected={false}
+      >
+        Last
+      </a>
+    </li>
+  </ul>
+</nav>
+`;
+
+exports[`Renders Paginator render without crash 2`] = `
+<nav
+  className="sc-bdVaJa iSsrAY"
+  data-container="paginator"
+>
+  <ul
+    className="sc-bwzfXH jZnbsg"
+  >
+    <li>
+      <a
+        className="sc-bxivhb hJoAke sc-htpNat hJqWET"
+        data-action="paginator:first:link"
+        onClick={[Function]}
+        selected={true}
+      >
+        Previous
+      </a>
+    </li>
+    <li>
+      <a
+        className="sc-htpNat ioIdIC"
+        data-action="paginator:1:link"
+        onClick={[Function]}
+        selected={false}
+      >
+        2
+      </a>
+    </li>
+    <li>
+      <a
+        className="sc-htpNat ioIdIC"
+        data-action="paginator:2:link"
+        onClick={[Function]}
+        selected={false}
+      >
+        3
+      </a>
+    </li>
+    <li>
+      <a
+        className="sc-htpNat ioIdIC"
+        data-action="paginator:3:link"
+        onClick={[Function]}
+        selected={false}
+      >
+        4
+      </a>
+    </li>
+    <li>
+      <a
+        className="sc-htpNat ioIdIC"
+        data-action="paginator:4:link"
+        onClick={[Function]}
+        selected={false}
+      >
+        5
+      </a>
+    </li>
+    <li>
+      <a
+        className="sc-htpNat ioIdIC"
+        data-action="paginator:5:link"
+        onClick={[Function]}
+        selected={false}
+      >
+        6
+      </a>
+    </li>
+    <li>
+      <a
+        className="sc-htpNat ioIdIC"
+        data-action="paginator:6:link"
+        onClick={[Function]}
+        selected={false}
+      >
+        7
+      </a>
+    </li>
+    <li>
+      <a
+        className="sc-htpNat ioIdIC"
+        data-action="paginator:7:link"
+        onClick={[Function]}
+        selected={false}
+      >
+        8
+      </a>
+    </li>
+    <li>
+      <a
+        className="sc-htpNat ioIdIC"
+        data-action="paginator:8:link"
+        onClick={[Function]}
+        selected={false}
+      >
+        9
+      </a>
+    </li>
+    <li>
+      <a
+        className="sc-ifAKCX hJgFXe sc-htpNat ioIdIC"
+        data-action="paginator:last:link"
+        onClick={[Function]}
+        selected={false}
+      >
+        Last
+      </a>
+    </li>
+  </ul>
+</nav>
+`;

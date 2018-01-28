@@ -63,10 +63,13 @@ export class Paginator extends Component {
 		}
 		const currentPage = Math.ceil(size / pageSize);
 		return (
-			<Navigator>
+			<Navigator
+				data-container="paginator"
+			>
 				<PageNavigator>
 					<li>
 						<FirtsLink
+							data-action="paginator:first:link"
 							selected={page===0}
 							onClick={()=> onChange({page: 0})}
 						>
@@ -79,6 +82,7 @@ export class Paginator extends Component {
 								key={pageItem}
 							>
 								<Link
+									data-action={`paginator:${pageItem}:link`}
 									selected={pageItem === page}
 									onClick={()=> onChange({page: --pageItem})}s
 								>
@@ -89,6 +93,7 @@ export class Paginator extends Component {
 					)}
 					<li>
 						<LastLink
+							data-action="paginator:last:link"
 							selected={currentPage - 1 === page}
 							onClick={()=> onChange({page: currentPage - 1})}
 						>
